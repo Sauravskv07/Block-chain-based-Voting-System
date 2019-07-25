@@ -35,7 +35,7 @@ Our web server would be running various functions to count total registered user
 For People with no Computation Power( i.e. mobile devices/ computer)
 A user node can have multiple votes and can have multiple registrations for different people. So a person can find the nearest user node , register to it and vote using that node. 
 
--Features that the system provides:
+- Features that the system provides:
 1. Easy Registration of voters with proper verification.
 2. Voters can cast their vote from any Location using web (REST) interface.
 3. Votes stats in real time.
@@ -45,7 +45,7 @@ A user node can have multiple votes and can have multiple registrations for diff
 - Dataset Used:
 We will create our own dataset of aadhar info and data mapping from present address to constituency.
 
--Technologies Used:
+- Technologies Used:
 1. Node for rest api
 2. Truffle as the framework
 3. Solidify for smart-contract creation
