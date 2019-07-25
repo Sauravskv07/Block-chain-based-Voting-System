@@ -15,6 +15,7 @@ Transaction by a user can be of two types
 2. Spending vote token.
 
 Registering a voter requires voter to enter its aadhar number which can be verified either by fingerprint or OTP on the registered mobile number. After this the voter will enter its secret which would then be hashed with user details to give each voter a unique id which can be assumed to be a voter ID. Now this acts like a trapdoor function where user’s secret and aadhar info can be used to get the voter ID but not vice-versa. 
+A user node can have multiple vote tokens for different registration. So a person without a compute power can register using any nearby trusted user node.
 
 After registration a user will be allotted a vote token. This vote would contain the unique ID generated for the user, its own Unique ID, Date of Creation, Party Voted, Constituency of User.
 
@@ -23,17 +24,11 @@ The admin node will take care of putting special transactions which would be use
 2. Start/End of voter’s registration
 3. Start/End of the voting.
 
-Re-registering for voting
-Re-registering needs to be done for every voting season. Admin Node will insert a new checkpoint before which all the registered participants become invalid. This is a way to prevent *Zombie voters*( voters who have died or would not vote) in our voting list.
-
-Casting Vote
 Casting vote transaction requires that your unique ID generated from aadhar and secret should have been already registered. Thus now you can vote signing the vote by your unique id and sending the vote to the admin node i.e. the Election Commision Node. 
 
-Counting of Votes:
 Our web server would be running various functions to count total registered users, number of votes to each constituency party wise and other important details and would be triggered by each new block of vote tokens mined and updating the web portal with the information.
 
-For People with no Computation Power( i.e. mobile devices/ computer)
-A user node can have multiple votes and can have multiple registrations for different people. So a person can find the nearest user node , register to it and vote using that node. 
+Re-registering for voting needs to be done for every voting season. Admin Node will insert a new checkpoint before which all the registered participants become invalid. This is a way to prevent *Zombie voters*( voters who have died or would not vote) in our voting list.
 
 - Features that the system provides:
 1. Easy Registration of voters with proper verification.
