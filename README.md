@@ -3,8 +3,10 @@
 - Basic Structure of our Block-chain solution:
 
 Our solution would contain a web interface for people to register by either creating their own node or using a pre-existing node. The nodes will be of two types 
+
 1. Admin nodes maintained by Election Commission to administer the events of voting using the block-chain and distribute vote tokens.
 2. User nodes maintained by users to register and get vote tokens and use them to cast their vote.
+
 On the same web portal the user can spend its vote token once the voting begins to vote for suitable canditate and get other useful voting stats.
 
 - Working of the System:
