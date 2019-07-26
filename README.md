@@ -11,7 +11,7 @@ On the same web portal the user can spend its vote token once the voting begins 
 
 - Working of the System:
 
-Each user node with computing power of its own computer /mobile device which can be used to commit a transaction.
+Each user node has computing power of its own computer /mobile device which can be used to commit a transaction.
 Transaction by a user can be of two types
 1. Registering of a voter.
 2. Spending vote token.
@@ -21,13 +21,13 @@ A user node can have multiple vote tokens for different registration. So a perso
 
 After registration a user will be allotted a vote token. This vote would contain the unique ID generated for the user, its own Unique ID, Date of Creation, Party Voted, Constituency of User.
 
+Casting vote transaction requires that your unique ID generated from aadhar and secret should have been already registered. Thus a user can vote by spending his/her vote token using our web portal.
+
 The admin node will take care of putting special transactions which would be used as temporal checkpoints for 
 1. Adding new Mining nodes
 2. Start/End of voter’s registration
 3. Start/End of the voting.
-
-Casting vote transaction requires that your unique ID generated from aadhar and secret should have been already registered. Thus now you can vote signing the vote by your unique id and sending the vote to the admin node i.e. the Election Commision Node. 
-
+ 
 Our web server would be running various functions to count total registered users, number of votes to each constituency party wise and other important details and would be triggered by each new block of vote tokens mined and updating the web portal with the information.
 
 Re-registering for voting needs to be done for every voting season. Admin Node will insert a new checkpoint before which all the registered participants become invalid. This is a way to prevent *Zombie voters*( voters who have died or would not vote) in our voting list.
