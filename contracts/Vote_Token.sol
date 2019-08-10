@@ -17,7 +17,7 @@ contract Vote_Token
     //structure of a vote token
 
     struct Vote {
-        uint256 id;
+        uint256 _id;
         bool _spent;
         string _party;
         string _constituency;
@@ -36,16 +36,16 @@ contract Vote_Token
     //Event emitted when a vote token is spent
 
     event VoteEvent (
-        bytes32 voterid,
-        string party,
-        string constituency
+        bytes32 _voterid,
+        string _party,
+        string _constituency
     );
 
 
     //Event emitted when the voting starts
 
     event VotingStartEvent(
-        uint256 totalVotes
+        uint256 _totalVotes
     );
 
 
@@ -60,7 +60,7 @@ contract Vote_Token
     //Event emitted when the voting process ends
 
     event VotingEndEvent(
-            uint256 totalVotesCasted
+            uint256 _totalVotesCasted
         );
 
     //Event emitted when the registering of users start
@@ -87,6 +87,11 @@ contract Vote_Token
 
     mapping (string => mapping(string => uint256)) vote_count;
 
+    //to store whether party is registered in the constituency or not
+    mapping (string => mapping(string => uint)) party_registery;
+
+    //to store whether constituecy exist or not
+    mapping (string => uint) constituency_registery;
 
     // to store address of the admin who deployed the constract
 
@@ -100,6 +105,7 @@ contract Vote_Token
         name = _name;
         state = State.Registering;
         totalVotes = 0;
+        symbol = "VOTE";
 
         emit RegisteringStartEvent(
             name
@@ -113,7 +119,10 @@ contract Vote_Token
     public
     onlyOwner {
         require(state == State.Registering,'Registration of parties is only allowed in registration phase');
+
         vote_count[_constituency][_party] = 0;
+        party_registery[_constituency][_party] = 1;
+        constituency_registery[_constituency] = 1;
 
         emit PartyRegistryEvent(
             _constituency,
@@ -127,9 +136,12 @@ contract Vote_Token
     function startVoting()
     public
     onlyOwner {
+        require(state == State.Registering,'Voting will start only if registration was active before');
         state = State.Voting;
         totalVotesCasted = 0;
-        emit VotingStartEvent(totalVotes);
+        emit VotingStartEvent(
+            totalVotes
+        );
     }
 
 
@@ -138,6 +150,7 @@ contract Vote_Token
     function endVoting()
     public
     onlyOwner{
+        require(state == State.Voting,'Voting will end only after it has started');
         state = State.End;
         emit VotingEndEvent(
             totalVotesCasted
@@ -147,20 +160,24 @@ contract Vote_Token
 
     //function called by any account to register a user for vote
 
-    function register(bytes memory x)
+    function register(bytes memory x,string memory _constituency)
     public
     returns (bool success)
     {
 
         require(state == State.Registering, 'Registration closed ');
 
+        require(constituency_registery[_constituency] == 1,'This constituency is not registered');
+
         bytes32 _voterid = sha256(x);
 
-        Vote memory vote_voter = Vote(totalVotes,false,"","",block.timestamp);
-
-        vote[_voterid] = vote_voter;
+        require(vote[_voterid]._id == 0,'Voter already registered');
 
         totalVotes = totalVotes + 1;
+
+        Vote memory vote_voter = Vote(totalVotes,false,"",_constituency,block.timestamp);
+
+        vote[_voterid] = vote_voter;
 
         return true;
     }
@@ -182,6 +199,10 @@ contract Vote_Token
     returns(bool success)
     {
         bytes32 _voterid = sha256(_voter);
+
+        require(party_registery[vote[_voterid]._constituency][_party] == 1,'Party not registered for this constituency');
+
+        require(vote[_voterid]._id >= 1,'The voter is not registered');
 
         require(vote[_voterid]._spent == false,'This voter token has already been used');
 
@@ -209,6 +230,7 @@ contract Vote_Token
         name = "Vote Token";
         state = State.Registering;
         totalVotes = 0;
+        symbol = "VOTE";
 
         emit RegisteringStartEvent(
             name
