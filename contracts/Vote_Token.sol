@@ -66,7 +66,8 @@ contract Vote_Token
     //Event emitted when the registering of users start
 
     event RegisteringStartEvent(
-            string _name
+            string _name,
+            string _symbol
     );
 
 
@@ -108,7 +109,7 @@ contract Vote_Token
         symbol = "VOTE";
 
         emit RegisteringStartEvent(
-            name
+            name,symbol
         );
     }
 
@@ -233,7 +234,7 @@ contract Vote_Token
         symbol = "VOTE";
 
         emit RegisteringStartEvent(
-            name
+            name,symbol
         );
     }
 }
