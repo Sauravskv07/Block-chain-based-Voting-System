@@ -51,7 +51,7 @@ App={
                     console.log("There has been some error while voting ",error);
                 }
                 else{
-                    console.log("Voterid of person = ",event.args._voterid," Party voted = ",event.args._voterid," Constituency = ",event.args._constituency);
+                    console.log("Voterid of person = ",event.args._voterid," Party voted = ",event.args._party," Constituency = ",event.args._constituency);
                 }
             App.render();
             })
