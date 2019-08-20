@@ -124,8 +124,12 @@ App={
                     console.log("There has been some error while voting ",error);
                 }
                 else{
+<<<<<<< HEAD
                     console.log("Voterid of person = ",event.args._voterid," Party voted = ",event.args._voterid," Constituency = ",event.args._constituency);
                     App.getTotalVoteCasted();
+=======
+                    console.log("Voterid of person = ",event.args._voterid," Party voted = ",event.args._party," Constituency = ",event.args._constituency);
+>>>>>>> a8ab45e2be3918cc87f2e3a06872dec3e279c2eb
                 }
                 App.render();
             })
