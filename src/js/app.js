@@ -92,6 +92,43 @@ App={
         })
     },
 
+    //when a user wants to vote and enters party then call this function
+    spendVote: function(voter,party){
+        //show loading symbol
+        App.contracts.VoteToken.deployed().then(function(instance){
+            instance.spend(voter,party).then(function(){
+                document.getElementById('Message').innerHTML="Congratulations!!! You have spent your vote token";
+                //hide loading symbol
+                App.error=0;
+                App.render();
+            })
+        })
+    },
+
+    regiserForVote: function(voter,party){
+        //show loading symbol
+        App.contracts.VoteToken.deployed().then(function(instance){
+            instance.register(voter,party).then(function(){
+                document.getElementById('Message').innerHTML="Congratulations!!! You have been registered for voting";
+                //hide loading symbol
+                App.error=0;
+                App.render();
+            })
+        })
+    },
+
+    regiserForVote: function(constituency,party){
+        //show loading symbol
+        App.contracts.VoteToken.deployed().then(function(instance){
+            instance.registerParty(constituency,party).then(function(receipt){
+                document.getElementById('Message').innerHTML="Congratulations!!! You have been registered a new party : "+receipt.logs[0].args._party+ " in the constituency : "+receipt.logs[0].args._constituency;
+                //hide loading symbol
+                App.error=0;
+                App.render();
+            })
+        })
+    },
+
     getTotalVote: function(){
         App.contracts.VoteToken.deployed().then(function(instance){
             instance.totalVotes((value)=>{
@@ -124,12 +161,8 @@ App={
                     console.log("There has been some error while voting ",error);
                 }
                 else{
-<<<<<<< HEAD
                     console.log("Voterid of person = ",event.args._voterid," Party voted = ",event.args._voterid," Constituency = ",event.args._constituency);
                     App.getTotalVoteCasted();
-=======
-                    console.log("Voterid of person = ",event.args._voterid," Party voted = ",event.args._party," Constituency = ",event.args._constituency);
->>>>>>> a8ab45e2be3918cc87f2e3a06872dec3e279c2eb
                 }
                 App.render();
             })
@@ -171,6 +204,7 @@ App={
                 if(error)
                     console.log("There has been an error in registration of a party ",error);
                 else{
+                    window.alert("Party Registered !! Party Name = "+event.args._party," Constituency = "+event.args._constituency)
                     console.log("Party Registered !! Party Name = ",event.args._party," Constituency = ",event.args._constituency);
                 }
                 App.render();
@@ -196,5 +230,6 @@ App={
 window.onload = function(){
     App.init();
 }
-
+//on entering otp will verify the otp using ajax and will send the result as json
+// this json would then be sent to regiter voter and spend voter accordingly
 
