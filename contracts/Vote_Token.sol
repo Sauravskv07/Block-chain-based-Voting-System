@@ -37,8 +37,8 @@ contract Vote_Token
 
     event VoteEvent (
         bytes32 _voterid,
-        string _party,
-        string _constituency
+        string indexed _party,
+        string indexed _constituency
     );
 
 
@@ -52,8 +52,8 @@ contract Vote_Token
     //Event emitted when a new party is registered
 
     event PartyRegistryEvent(
-            string _constituency,
-            string _party
+            string indexed _constituency,
+            string indexed _party
         );
 
 

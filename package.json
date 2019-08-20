@@ -27,6 +27,8 @@
   "dependencies": {
     "express": "^4.17.1",
     "truffle-contract": "^4.0.28",
-    "web3": "^1.2.1"
+    "truffle-hdwallet-provider": "^1.0.16",
+    "web3": "^1.2.1",
+    "web3-eth-personal": "^1.2.1"
   }
 }
