@@ -21,6 +21,9 @@ var VoterSchema= new mongoose.Schema({
     address: {
         type: String
     },
+    constituency: {
+        type: String
+    },
     gender: {
         type: String
     },

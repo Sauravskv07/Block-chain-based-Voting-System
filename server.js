@@ -78,8 +78,8 @@ app.post('/register', function(req,res){
             twilioClient.messages.create({
               from:'+12165849643',
               to: found.phone,
-              body: 'Your verification code is: '+token
-            }).then(message=>{
+              body: `Your verification code is: $(token)`
+            }).then((message)=>{
               console.log(message);
             });
             res.render('verify',{data:success}) } })}

@@ -1,12 +1,3 @@
-
-function opennav() {
-    var nav=document.getElementById("hbutton");
-    if(nav.style.display == "none")
-        { nav.style.display = "block"; }
-    else {
-    nav.style.display = "none";
-    }
-}
 var ismobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
  
 if (!ismobile){
@@ -15,23 +6,32 @@ if (!ismobile){
   scrolled.style.top=-(window.pageYOffset * 0.5)+ 'px';
  }, false)
 }
-var overlay = document.getElementById("overlay");
-var nav = document.getElementById("navv");
-window.addEventListener('load', function(){
-  overlay.style.display = 'none';
-  overlay.style.opacity= 0;
-  nav.style.opacity= 1;
-  nav.style.background= '#434342f7';
-})
 
-var ismobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
- 
-if (!ismobile){
- window.addEventListener('scroll', function(){
-  var scrolled=document.getElementById('scrolled');
-  scrolled.style.top=-(window.pageYOffset * 0.5)+ 'px';
- }, false)
+function formData(event) { 
+
+event.preventDefault();
+var x = document.getElementById('inputEmail1').value;
+var y = document.getElementById('inputEmail2').value;
+var partyData = { "Party" : x,
+"Constituency" : y};
+console.log(JSON.stringify(partyData));
+
 }
+
+function partyData(event) { 
+
+event.preventDefault();
+var x = document.getElementById('party').value;
+var y = document.getElementById('const').value;
+var voteData = { "Party" : x,
+"Constituency" : y,
+"Total Votes" : "2343" };
+var totalVotes= document.getElementById('totalVote');
+totalVotes.innerHTML = JSON.stringify(voteData);
+totalVotes.style.visibility = "visible";
+console.log(JSON.stringify(voteData));
+}
+
 
 var contracts={};
 App={
