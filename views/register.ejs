@@ -1,11 +1,11 @@
-<% include /partials/upper.ejs %>
+<% include ../src/partials/upper.ejs %>
 
 <div class="form-register">
 <form action="/register" method="POST" class="form-horizontal">
   <div class="form-group" style="padding-bottom: 25px;">
     <label for="inputEmail3" class="col-sm-2 control-label" style="color: #fff">Adhar No.</label>
     <div class="col-sm-10">
-      <input type="number" value="adhar_id" class="form-control" id="inputEmail3" placeholder="Enter your Adhar No.">
+      <input type="number" value="adhar_id" name="adhar_id" class="form-control" id="inputEmail3" placeholder="Enter your Adhar No.">
     </div>
   </div>
   <div class="form-group">
@@ -16,4 +16,4 @@
 </form>
 </div>
 
-<% include /partials/lower.ejs %>
+<% include ../src/partials/lower.ejs %>

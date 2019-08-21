@@ -5,7 +5,7 @@ var VoterSchema= new mongoose.Schema({
     adhar_id: {
         type: Number
     },
-    fullName: {
+    name: {
         type: String
     },
     dob: {
