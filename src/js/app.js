@@ -32,6 +32,13 @@ totalVotes.style.visibility = "visible";
 console.log(JSON.stringify(voteData));
 }
 
+function hideLoader() {
+    $('.main').hide();
+}
+
+$(window).ready(hideLoader);
+
+setTimeout(hideLoader, 20 * 1000);
 
 var contracts={};
 App={
